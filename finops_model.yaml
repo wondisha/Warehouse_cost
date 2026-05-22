@@ -1,0 +1,26 @@
+name: snowflake_cost_model
+description: "Model for analyzing Snowflake compute costs and warehouse efficiency."
+tables:
+  - name: finops_wh_efficiency
+    base_table:
+      database: DBADMIN
+      schema: PUBLIC
+      table: FINOPS_WH_EFFICIENCY
+    dimensions:
+      - name: warehouse_name
+        expr: WAREHOUSE_NAME
+        description: "The name of the virtual warehouse"
+        data_type: VARCHAR
+    measures:
+      - name: avg_hourly_credits
+        expr: AVG_HOURLY_CREDITS
+        description: "The average credits consumed per hour"
+        data_type: NUMBER
+      - name: hours_active
+        expr: HOURS_ACTIVE
+        description: "Number of hours the warehouse was active"
+        data_type: NUMBER
+      - name: peak_hourly_credits
+        expr: PEAK_HOURLY_CREDITS
+        description: "The peak credits consumed in a single hour"
+        data_type: NUMBER
